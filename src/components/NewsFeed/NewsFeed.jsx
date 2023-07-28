@@ -15,28 +15,28 @@ const NewsFeed = () => {
 
     // console.log(process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY);
 
-    // const fetchRandomPhotos = async () => {
-    //     try {
-    //         const response = await fetch(
-    //             `https://api.unsplash.com/photos/random/?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}&count=10&page=${page}`,
-    //         );
-    //         if (!response.ok) {
-    //             throw new Error("Failed to fetch photos");
-    //         }
-    //         const data = await response.json();
-    //         console.log(">>>", data)
-    //         setPhotos((prevPhotos) => [...prevPhotos, ...data]);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
-
-    const fetchRandomPhotos = () => {
-        const data = imageData;
-        setPhotos((prevPhotos) => [...prevPhotos, ...data]);
-        console.log(">>>api data: ", typeof(data))
-        console.log(data)
+    const fetchRandomPhotos = async () => {
+        try {
+            const response = await fetch(
+                `https://api.unsplash.com/photos/random/?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}&count=10&page=${page}`,
+            );
+            if (!response.ok) {
+                throw new Error("Failed to fetch photos");
+            }
+            const data = await response.json();
+            console.log(">>>", data)
+            setPhotos((prevPhotos) => [...prevPhotos, ...data]);
+        } catch (error) {
+            console.error(error);
+        }
     };
+
+    // const fetchRandomPhotos = () => {
+    //     const data = imageData;
+    //     setPhotos((prevPhotos) => [...prevPhotos, ...data]);
+    //     console.log(">>>api data: ", typeof(data))
+    //     console.log(data)
+    // };
 
     const infiniteScrollHandler = async () => {
 

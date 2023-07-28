@@ -1,11 +1,14 @@
-import React from 'react'
-
-import UserProfile from '../../components/UserProfile/UserProfile'
+import React from 'react';
+import { useRouter } from 'next/router';
+import UserProfile from '../../components/UserProfile/UserProfile';
 
 const UserPage = () => {
-    return (
-        <UserProfile />
-    )
-}
+  const router = useRouter();
+  const { userName } = router.query; 
+
+  return (
+    <UserProfile username={userName} />
+  );
+};
 
 export default UserPage;
