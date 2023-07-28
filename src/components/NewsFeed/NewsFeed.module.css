@@ -1,0 +1,118 @@
+.postsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+}
+
+.post{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 8px 16px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.postHead{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.postHeadLeft{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.postImage{
+    width: 100%;
+    height: 100%;
+    margin: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.postBody{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    word-wrap: break-word;   
+    text-align: left; 
+}
+
+.postBodyData{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4px 0px;
+}
+
+
+@media (max-width: 768px) {
+    
+    .post{
+        width: 80%;
+    }
+    .postImage > img{
+        width: 100%;
+        height: 100%;
+    }
+    
+    .postImage{
+        width: 90%;
+        height: 90%;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .postHead{
+        font-size: 14px;
+    }
+
+    .postHeadLeft>img{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .postImage{
+        width: 100%;
+        height: 100%;
+    }
+    .postBody>p{
+        font-size: 12px;
+    }
+    
+    .postBody>p>span{
+        font-size: 12px;
+    }
+
+    .postBodyData{
+        font-size: 12px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .post{
+        width: 100%;
+    }
+    .postImage{
+        width: 100%;
+        height: 100%;
+    }
+}
