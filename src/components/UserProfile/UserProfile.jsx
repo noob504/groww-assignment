@@ -13,29 +13,29 @@ import userData from '../../dummy-data/user_data.json';
 const UserProfile = ({ username }) => {
     const [viewType, setViewType] = useState('grid');
 
-    // useEffect(() => {
-    //     const fetchUserProfile = async () => {
-    //         try {
-    //             const response = await fetch(
-    //                 `https://api.unsplash.com/users/:username/?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`,
-    //             );
-    //             if (!response.ok) {
-    //                 throw new Error('Failed to fetch user profile');
-    //             }
-    //             const data = await response.json();
-    //             setUser(data);
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
+    useEffect(() => {
+        const fetchUserProfile = async () => {
+            try {
+                const response = await fetch(
+                    `https://api.unsplash.com/users/:username/?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`,
+                );
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user profile');
+                }
+                const data = await response.json();
+                setUser(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
-    //     if (username) {
-    //         fetchUserProfile();
-    //     }
-    // }, [username]);
+        if (username) {
+            fetchUserProfile();
+        }
+    }, [username]);
 
-    const user = userData;
-    console.log(user)
+    // const user = userData;
+    // console.log(user)
 
     const handleViewChangeType = (type) => {
         setViewType(type);
