@@ -100,35 +100,36 @@ const NewsFeed = () => {
   // }, []);
 
   /* ==================================================== */
-  const [initialLoad, setInitialLoad] = useState(true);
-  const photos = useSelector((state) => state.photos);
-  const page = useSelector((state) => state.page);
-  const dispatch = useDispatch();
+  // const [initialLoad, setInitialLoad] = useState(true);
+  // const photos = useSelector((state) => state.photos);
+  // const page = useSelector((state) => state.page);
+  // const dispatch = useDispatch();
 
-  // Fetch the initial page of data using local state
-  useEffect(() => {
-    if (initialLoad) {
-      fetchRandomPhotos(1);
-      setInitialLoad(false);
-    }
-  }, [dispatch, initialLoad]);
+  // // Fetch the initial page of data using local state
+  // useEffect(() => {
+  //   if (initialLoad) {
+  //     fetchRandomPhotos(1);
+  //     setInitialLoad(false);
+  //   }
+  // }, [dispatch, initialLoad]);
 
-  const infiniteScrollHandler = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop + 1 >=
-      document.documentElement.offsetHeight
-    ) {
-      dispatch(fetchRandomPhotos(page + 1));
-    }
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", infiniteScrollHandler);
-    return () => {
-      window.removeEventListener("scroll", infiniteScrollHandler);
-    };
-  }, [dispatch, page]);
+  // const infiniteScrollHandler = () => {
+  //   if (
+  //     window.innerHeight + document.documentElement.scrollTop + 1 >=
+  //     document.documentElement.offsetHeight
+  //   ) {
+  //     dispatch(fetchRandomPhotos(page + 1));
+  //   }
+  // };
+  // useEffect(() => {
+  //   window.addEventListener("scroll", infiniteScrollHandler);
+  //   return () => {
+  //     window.removeEventListener("scroll", infiniteScrollHandler);
+  //   };
+  // }, [dispatch, page]);
 
-  return <ListView photos={photos} />;
+  // return <ListView photos={photos} />;
+  return <ListView />;
 };
 
 export default NewsFeed;
