@@ -23,7 +23,12 @@ const NavBar = () => {
               // height={80}
             />
           </Link>
-        </div>
+      </div>
+      
+      <div className={styles.name}>
+        SocialSeedlings
+      </div>
+      
         <div className={styles.navLinks}>
           <ul>
             <li>
@@ -31,11 +36,11 @@ const NavBar = () => {
                 Home
               </Link>
             </li>
-              <li>
+              {/* <li>
                 <Link href={`me`}>
                   Profile
                 </Link>
-              </li>
+              </li> */}
           </ul>
         </div>
     </nav>

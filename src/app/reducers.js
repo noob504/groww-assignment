@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import photoReducer from './reducers/photoSlice.js';
-import pageReducer from './reducers/pageSlice.js';
+import userReducer from './reducers/userSlice.js';
 
 const rootReducer = combineReducers({
   photos: photoReducer,
-  page: pageReducer,
+  user: userReducer,
 });
 
 export default rootReducer;

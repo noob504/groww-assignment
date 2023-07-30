@@ -2,6 +2,9 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchUser } from "../../app/reducers/userSlice.js";
+
 import GridView from "../Posts/GridView/GridView";
 import ListView from "../Posts/ListView/ListView";
 
@@ -10,40 +13,54 @@ import styles from "./UserProfile.module.css";
 import GridIcon from "../../../public/assets/icons/grid-icon.svg";
 import ListIcon from "../../../public/assets/icons/list-icon.svg";
 
-import userData from "../../dummy-data/user_data.json";
 
 const UserProfile = ({ username }) => {
   const [viewType, setViewType] = useState("grid");
-  // const [user, setUser] = useState(null);
-
-  // useEffect(() => {
-  //   const fetchUserProfile = async () => {
-  //     try {
-  //       const response = await fetch(`https://api.unsplash.com/users/${username}/?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`);
-
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch user profile');
-  //       }
-
-  //       const data = await response.json();
-  //       // console.log(data);
-  //       setUser(data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   if (username) {
-  //     fetchUserProfile();
-  //   }
-  // }, [username]);
-
-  const user = userData;
-  console.log(user);
+  const [user, setUser] = useState(null);
 
   const handleViewChangeType = (type) => {
     setViewType(type);
   };
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch(`https://api.unsplash.com/users/${username}/?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY}`);
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch user profile');
+        }
+
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (username) {
+      fetchUserProfile();
+    }
+  }, [username]);
+
+
+  /* ============ RTK Implementation ============ */
+  // TODO: RTK Implementation
+
+  // const { user } = useSelector((state) => state.user);
+  // const dispatch = useDispatch();
+
+  // const handleViewChangeType = (type) => {
+  //   setViewType(type);
+  // };
+
+  // useEffect(() => {
+  //   if (username) {
+  //     dispatch(fetchUser(username));
+  //   }
+  // }, [username])
+
+  // console.log(user)
 
   return (
     <>
@@ -70,9 +87,6 @@ const UserProfile = ({ username }) => {
                 <b>{user.total_collections}</b> Collections
               </p>
               <p>{user.bio}</p>
-              {/* need to find the size of the array returned by the links to determine the number */}
-              {/* <p>{user.links.following}Following</p> */}
-              {/* <p>{user.links.followers}Followers</p> */}
             </div>
           </div>
 
@@ -96,7 +110,7 @@ const UserProfile = ({ username }) => {
           {viewType === "grid" ? (
             <GridView user={user} />
           ) : (
-            <ListView user={user} />
+            <ListView user={user} userProfile={true} />
           )}
         </div>
       )}
